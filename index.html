@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karan Soni — CSE Student &amp; Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #E7E9EC;   /* page background — cool light gray */
+    --surface:   #F5F6F8;   /* card / panel surface, lighter than bg */
+    --ink:       #111214;   /* primary text & rules */
+    --ink-dim:   #63666C;   /* secondary text */
+    --line:      #111214;   /* strong rules */
+    --line-soft: #CBCED3;   /* hairline dividers */
+    --red:       #D6001C;   /* single accent color */
+    --red-dim:   rgba(214,0,28,0.08);
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height:1.55;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- section index / running header ---------- */
+  .sheet-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:14px;
+    margin-bottom:48px;
+  }
+  .sheet-label span:first-child{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.04em;
+    color:var(--red);
+  }
+  .sheet-label span:last-child{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+
+  section{
+    padding: 88px 0 40px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding-top:120px;
+  }
+  .hero-kicker{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--red);
+    font-weight:600;
+    margin-bottom:20px;
+  }
+  h1{
+    font-family:var(--sans);
+    font-weight:800;
+    font-size:clamp(42px, 7.5vw, 84px);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  .role{
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:clamp(17px, 2.4vw, 22px);
+    color:var(--ink-dim);
+    margin-top:20px;
+    max-width:560px;
+  }
+
+  .title-block{
+    margin-top:56px;
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .title-block div{
+    padding:18px 18px;
+    border-right:1px solid var(--line-soft);
+  }
+  .title-block div:last-child{ border-right:none; }
+  .title-block .k{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:8px;
+  }
+  .title-block .v{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:15px;
+    color:var(--ink);
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 120px 1fr;
+    gap:32px;
+  }
+  .about-grid .tag{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:12px;
+    color:var(--red);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .about-body p{
+    max-width:640px;
+    color:var(--ink);
+    margin-bottom:16px;
+    font-size:16px;
+  }
+  .about-body p:last-child{ margin-bottom:0; }
+
+  /* ---------- skills / legend ---------- */
+  .legend{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:1px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .legend-group{
+    background:var(--surface);
+    padding:22px 24px;
+  }
+  .legend-group h3{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .legend-group h3::before{
+    content:"";
+    width:10px; height:10px;
+    background:var(--red);
+    display:inline-block;
+  }
+  .legend-group ul{ list-style:none; }
+  .legend-group li{
+    font-family:var(--sans);
+    font-size:14.5px;
+    color:var(--ink-dim);
+    padding:6px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .legend-group li:last-child{ border-bottom:none; }
+  .legend-group li::marker{ content:none; }
+
+  /* ---------- projects / index cards ---------- */
+  .projects{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .spec{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--line-soft);
+    padding:28px 30px 26px;
+  }
+  .spec::before{
+    content: attr(data-idx);
+    position:absolute;
+    top:-1px; left:-1px;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:11px;
+    color:#fff;
+    background:var(--ink);
+    padding:3px 9px;
+    letter-spacing:0.06em;
+  }
+  .spec-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    margin-top:12px;
+    margin-bottom:12px;
+  }
+  .spec-top h3{
+    font-family:var(--sans);
+    font-weight:800;
+    font-size:21px;
+    color:var(--ink);
+  }
+  .spec-top .stamp{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--red);
+    padding:4px 9px;
+  }
+  .spec p.desc{
+    color:var(--ink-dim);
+    max-width:680px;
+    margin-bottom:16px;
+    font-size:15px;
+  }
+  .spec-stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .spec-stack span{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink);
+    border:1px solid var(--ink);
+    padding:3px 8px;
+  }
+  .spec-links{
+    display:flex;
+    gap:12px;
+    font-family:var(--mono);
+    font-size:12.5px;
+  }
+  .spec-links a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:34px; height:34px;
+    color:var(--ink);
+    border:1px solid var(--ink);
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .spec-links a svg{ width:16px; height:16px; flex:none; }
+  .spec-links a:hover{ color:#fff; background:var(--red); border-color:var(--red); }
+
+  /* ---------- contact ---------- */
+  .contact{
+    text-align:center;
+    padding-bottom:120px;
+  }
+  .contact-kicker{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:22px;
+  }
+  .stamp-box{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    padding:48px 52px;
+  }
+  .stamp-box h2{
+    font-family:var(--sans);
+    font-weight:800;
+    font-size:clamp(26px,4vw,36px);
+    margin-bottom:14px;
+  }
+  .stamp-box p{
+    color:rgba(255,255,255,0.85);
+    margin-bottom:26px;
+    font-size:15px;
+  }
+  .contact-links{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:13.5px;
+  }
+  .contact-links a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px; height:42px;
+    color:#fff;
+    border:1px solid #fff;
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .contact-links a svg{ width:18px; height:18px; flex:none; }
+  .contact-links a:hover{ color:var(--red); border-color:#fff; background:#fff; }
+  .contact-links{ position:relative; }
+  .copy-toast{
+    position:absolute;
+    bottom:calc(100% + 10px);
+    left:50%;
+    transform:translateX(-50%) translateY(4px);
+    background:var(--ink);
+    color:#fff;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:6px 10px;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .copy-toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  footer{
+    text-align:center;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--ink-dim);
+    padding-bottom:40px;
+    text-transform:uppercase;
+  }
+
+  /* ---------- gradual blur (progressive scroll fade) ---------- */
+  .blur-scroll{
+    position:relative;
+    height:520px;
+    overflow:hidden;
+    border:1px solid var(--ink);
+  }
+  .blur-scroll-inner{
+    height:100%;
+    overflow-y:auto;
+    padding:26px 26px 96px;
+    scrollbar-width:thin;
+    scrollbar-color: var(--ink) transparent;
+  }
+  .blur-scroll-inner .projects{
+    gap:22px;
+  }
+  .gradual-blur{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:7rem;
+    pointer-events:none;
+    z-index:2;
+  }
+  .gb-layer{
+    position:absolute;
+    inset:0;
+    -webkit-backdrop-filter: blur(var(--gb-blur));
+    backdrop-filter: blur(var(--gb-blur));
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent var(--gb-fade));
+    mask-image: linear-gradient(to top, #000 0%, transparent var(--gb-fade));
+  }
+  .gb-scrim{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(to top, var(--bg) 0%, transparent 92%);
+    opacity:0.95;
+  }
+  .scroll-hint{
+    position:absolute;
+    left:50%; bottom:14px;
+    transform:translateX(-50%);
+    z-index:3;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    animation: hint-drift 2.2s ease-in-out infinite;
+  }
+  .scroll-hint svg{ width:12px; height:12px; }
+  @keyframes hint-drift{
+    0%, 100%{ transform:translate(-50%, 0); opacity:0.7; }
+    50%{ transform:translate(-50%, 4px); opacity:1; }
+  }
+
+  @media (max-width: 720px){
+    .title-block{ grid-template-columns: repeat(2,1fr); }
+    .title-block div:nth-child(2){ border-right:none; }
+    .about-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; animation:none !important; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--red);
+    outline-offset:3px;
+  }
+
+  #click-spark-canvas{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    pointer-events:none;
+    z-index:9999;
+  }
+</style>
+</head>
+<body>
+  <canvas id="click-spark-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- HERO / TITLE BLOCK -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-kicker">Web Dev · App Dev · Software Dev</div>
+      <h1>Karan Soni</h1>
+      <p class="role">3rd Year CSE Student @ JECRC University.</p>
+
+      <div class="title-block">
+        <div>
+          <div class="k">Role</div>
+          <div class="v">B.Tech CSE Student</div>
+        </div>
+        <div>
+          <div class="k">Focus</div>
+          <div class="v">Web &amp; App Dev</div>
+        </div>
+        <div>
+          <div class="k">Based in</div>
+          <div class="v">Jaipur, Rajasthan</div>
+        </div>
+        <div>
+          <div class="k">Status</div>
+          <div class="v">Open to internships</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sheet-label"><span>02</span><span>About</span></div>
+      <div class="about-grid">
+        <div class="tag">Profile</div>
+        <div class="about-body">
+          <p>I'm a third-year Computer Science (CSE) student at JECRC University, currently focused on strengthening my Data Structures &amp; Algorithms fundamentals. Alongside that, I've been exploring web and app development, picking up new tools as I build.</p>
+          <p>I'm looking for internship opportunities — SDE or general software roles — where I can apply what I'm learning to real projects and keep growing as a developer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sheet-label"><span>03</span><span>Skills &amp; Tools</span></div>
+      <div class="legend">
+        <div class="legend-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>C++</li>
+            <li>Java</li>
+            <li>Python</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+        <div class="legend-group">
+          <h3>Frontend</h3>
+          <ul>
+            <li>HTML5 / CSS3</li>
+            <li>React</li>
+            <li>Angular</li>
+          </ul>
+        </div>
+        <div class="legend-group">
+          <h3>Database</h3>
+          <ul>
+            <li>MySQL</li>
+          </ul>
+        </div>
+        <div class="legend-group">
+          <h3>Fundamentals</h3>
+          <ul>
+            <li>Data Structures &amp; Algorithms</li>
+            <li>DBMS</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sheet-label"><span>04</span><span>Selected Projects</span></div>
+
+      <div class="blur-scroll">
+        <div class="blur-scroll-inner">
+          <div class="projects">
+
+            <article class="spec" data-idx="P-01">
+              <div class="spec-top">
+                <h3>College Portfolio Website</h3>
+                <span class="stamp">College Project</span>
+              </div>
+              <p class="desc">A front-end website built as a college project in 2nd year, 3rd semester — my first real dive into structuring and styling a full page from scratch.</p>
+              <div class="spec-stack">
+                <span>HTML</span><span>CSS</span>
+              </div>
+              <div class="spec-links">
+                <a href="#" title="Source" aria-label="Source"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg></a>
+              </div>
+            </article>
+
+            <article class="spec" data-idx="P-02">
+              <div class="spec-top">
+                <h3>DevCraft Agency</h3>
+                <span class="stamp">OIBSIP</span>
+              </div>
+              <p class="desc">A landing page for a fictional dev agency, built as part of the Oasis Infobyte internship program (OIBSIP) — focused on clean layout and styling.</p>
+              <div class="spec-stack">
+                <span>HTML</span><span>CSS</span>
+              </div>
+              <div class="spec-links">
+                <a href="#" title="Source" aria-label="Source"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg></a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="gradual-blur" aria-hidden="true">
+          <span class="gb-layer" style="--gb-blur:0.5px; --gb-fade:40%"></span>
+          <span class="gb-layer" style="--gb-blur:2px; --gb-fade:55%"></span>
+          <span class="gb-layer" style="--gb-blur:4px; --gb-fade:70%"></span>
+          <span class="gb-layer" style="--gb-blur:8px; --gb-fade:85%"></span>
+          <span class="gb-layer" style="--gb-blur:12px; --gb-fade:100%"></span>
+          <span class="gb-scrim"></span>
+        </div>
+
+        <div class="scroll-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          Scroll for more
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="sheet-label"><span>05</span><span>Contact</span></div>
+      <div class="contact-kicker">Get in touch</div>
+      <div class="stamp-box">
+        <h2>Let's connect.</h2>
+        <p>Open to internship opportunities — SDE or general software roles.</p>
+        <div class="contact-links">
+          <span class="copy-toast" id="copy-toast">Email copied</span>
+          <a href="mailto:karansoniii166@gmail.com" id="email-link" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+          <a href="https://github.com/Karancdr" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.2.66.79.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/karan-soni-a31b59324" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-1.74.33-3.42 2.48-3.42 2.12 0 2.15 1.98 2.15 3.53V21H22v-7.18c0-3.86-.83-6.83-5.34-6.83-2.16 0-3.61 1.19-4.2 2.31h-.06V8.48z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Karan Soni — Portfolio 2026</footer>
+
+  <script>
+    (function(){
+      // Vanilla-JS port of the ClickSpark component — no React required.
+      var canvas = document.getElementById('click-spark-canvas');
+      var ctx = canvas.getContext('2d');
+      var sparks = [];
+
+      var config = {
+        sparkColor: '#D6001C', // matches the Swiss theme's single red accent
+        sparkSize: 10,
+        sparkRadius: 15,
+        sparkCount: 8,
+        duration: 400 // ms
+      };
+
+      function resize(){
+        canvas.width = window.innerWidth * devicePixelRatio;
+        canvas.height = window.innerHeight * devicePixelRatio;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function easeOutQuad(t){ return t * (2 - t); }
+
+      function spawnSparks(x, y){
+        var now = performance.now();
+        for (var i = 0; i < config.sparkCount; i++){
+          sparks.push({
+            x: x,
+            y: y,
+            angle: (2 * Math.PI * i) / config.sparkCount,
+            start: now
+          });
+        }
+      }
+
+      function handleClick(e){
+        spawnSparks(e.clientX, e.clientY);
+      }
+
+      function draw(now){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        sparks = sparks.filter(function(spark){
+          var elapsed = now - spark.start;
+          var progress = elapsed / config.duration;
+          if (progress >= 1) return false;
+
+          var eased = easeOutQuad(progress);
+          var travel = eased * config.sparkRadius;
+          var length = config.sparkSize * (1 - eased);
+
+          var x1 = spark.x + Math.cos(spark.angle) * travel;
+          var y1 = spark.y + Math.sin(spark.angle) * travel;
+          var x2 = spark.x + Math.cos(spark.angle) * (travel + length);
+          var y2 = spark.y + Math.sin(spark.angle) * (travel + length);
+
+          ctx.strokeStyle = config.sparkColor;
+          ctx.globalAlpha = 1 - progress;
+          ctx.lineWidth = 2;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+
+          return true;
+        });
+
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+
+      // Respect reduced-motion preferences: no bursts, no animation loop.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.addEventListener('click', handleClick);
+        requestAnimationFrame(draw);
+      }
+    })();
+
+    // Email link: still tries mailto: normally, but also copies the address
+    // to the clipboard as a fallback for anyone without a default mail app.
+    (function(){
+      var emailLink = document.getElementById('email-link');
+      var toast = document.getElementById('copy-toast');
+      if (!emailLink || !toast) return;
+
+      emailLink.addEventListener('click', function(){
+        var address = 'karansoniii166@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(address).catch(function(){});
+        }
+        toast.classList.add('show');
+        clearTimeout(toast._hideTimer);
+        toast._hideTimer = setTimeout(function(){
+          toast.classList.remove('show');
+        }, 1800);
+      });
+    })();
+  </script>
+
+</body>
+</html>
